@@ -1,0 +1,9 @@
+# ide
+.vscode
+.idea
+.chrome
+
+# local
+node_modules
+coverage
+*.log

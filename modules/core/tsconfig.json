@@ -1,0 +1,12 @@
+{
+  "extends": "../../config/shared_tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "types": ["jest", "mocha"]
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": []
+}
