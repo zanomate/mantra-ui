@@ -1,28 +1,23 @@
-import {
-  MultiValueAttribute,
-  parseMultiValueAttribute,
-  stringifyMultiValueAttribute
-} from './MultiValueAttribute'
+import { MultiValue } from './MultiValue'
 
-const checkParse = (input: any, expected: MultiValueAttribute) => {
-  const parsed = parseMultiValueAttribute(input)
+const checkParse = (input: any, expected: MultiValue.Type) => {
+  const parsed = MultiValue.parse(input)
   expect(parsed).toEqual(expected)
 }
 
 const checkStringify = (input: any, expected: string) => {
-  const string = stringifyMultiValueAttribute(input)
+  const string = MultiValue.stringify(input)
   expect(string).toEqual(expected)
 }
 
-describe('MultiValueAttribute', () => {
-  describe('parseMultiValueAttribute()', () => {
+describe('MultiValue', () => {
+  describe('parse()', () => {
     it('accept falsy values', () => {
       checkParse(undefined, [])
       checkParse(null, [])
       checkParse('', [])
     })
 
-    // @ts-ignore
     it('accept single value', () => {
       checkParse('plain', ['plain'])
       checkParse('kebab-case', ['kebab-case'])
@@ -33,26 +28,23 @@ describe('MultiValueAttribute', () => {
       checkParse('123', ['123'])
     })
 
-    // @ts-ignore
     it('ignore spaces around value', () => {
       checkParse(' value ', ['value'])
       checkParse(' value   ', ['value'])
     })
 
-    // @ts-ignore
     it('accept multiple values', () => {
       checkParse('value1 value2', ['value1', 'value2'])
       checkParse('kebab-case -Mixed-Case _snake_case 123', ['kebab-case', '-Mixed-Case', '_snake_case', '123'])
     })
 
-    // @ts-ignore
     it('ignore additional spaces between values', () => {
       checkParse('value1  value2', ['value1', 'value2'])
       checkParse(' value1  value2   ', ['value1', 'value2'])
     })
   })
 
-  describe('stringyMultiValueAttribute()', () => {
+  describe('stringify()', () => {
     it('accept falsy values', () => {
       checkStringify(undefined, '')
       checkStringify(null, '')

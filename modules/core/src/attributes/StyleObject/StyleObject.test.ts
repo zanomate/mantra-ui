@@ -1,13 +1,13 @@
 /* eslint-disable quote-props */
-import { parseStyleAttribute, stringifyStyleAttribute, StyleAttribute } from './StyleAttribute'
+import { StyleObject } from './StyleObject'
 
-const checkParse = (input: any, expected: StyleAttribute) => {
-  const parsed = parseStyleAttribute(input)
+const checkParse = (input: any, expected: StyleObject.Type) => {
+  const parsed = StyleObject.parse(input)
   expect(parsed).toEqual(expected)
 }
 
 const checkStringify = (input: any, expected: string) => {
-  const string = stringifyStyleAttribute(input)
+  const string = StyleObject.stringify(input)
   expect(string).toEqual(expected)
 }
 

@@ -1,2 +1,3 @@
-export * from './attributes/MultiValueAttribute/MultiValueAttribute'
-export * from './attributes/StyleAttribute/StyleAttribute'
+export * from './attributes/MultiValue/MultiValue'
+export * from './attributes/StyleObject/StyleObject'
+export * from './utils/toCSS'

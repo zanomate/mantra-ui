@@ -3,6 +3,9 @@
 .idea
 .chrome
 
+#build
+dist
+
 # local
 node_modules
 coverage
