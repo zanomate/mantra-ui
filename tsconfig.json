@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "types": ["jest", "mocha"]
+  },
+  "include": [
+    "./modules/**/*.ts"
+  ],
+  "exclude": []
+}

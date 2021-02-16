@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports,no-undef */
 const del = require('rollup-plugin-delete')
 const peerDepsExternal = require('rollup-plugin-peer-deps-external')
 const { nodeResolve } = require('@rollup/plugin-node-resolve')
@@ -12,7 +12,7 @@ const replace = require('@rollup/plugin-replace')
 
 const buildConfig = {
   input: 'src/index.ts',
-  output: { dir: 'dist', format: 'cjs', sourceMap: true },
+  output: { dir: 'dist', format: 'cjs' },
   plugins: [
     del({ targets: 'dist', hook: 'buildStart' }),
     peerDepsExternal(),

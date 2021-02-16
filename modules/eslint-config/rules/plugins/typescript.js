@@ -15,6 +15,7 @@ module.exports = {
     'no-extra-parens': 'off',
     'no-magic-numbers': 'off',
     'import/no-namespace': 'off',
+    'no-shadow': 'off',
     'no-unused-expression': 'off',
     'no-unused-vars': 'off',
     'no-use-before-define': 'off',
@@ -105,6 +106,8 @@ module.exports = {
     '@typescript-eslint/no-throw-literal': 'off',
     // Disallow the use of type aliases
     '@typescript-eslint/no-type-alias': 'off',
+    // Disallow variable declarations from shadowing variables declared in the outer scope
+    '@typescript-eslint/no-shadow': 'error',
     // Flags unnecessary equality comparisons against boolean literals
     '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
     // Prevents conditionals where the type is always truthy or always falsy
