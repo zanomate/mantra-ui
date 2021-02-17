@@ -11,7 +11,9 @@ export namespace StyleObject {
 
   export const parse: Attribute.Parse<Type> = value => {
     if (!value) return {}
-    const properties = value.split(';').filter(p => !!p)
+    const properties: string[] = value
+      .split(';')
+      .filter((p: any) => !!p)
     return properties.reduce<Type>((res, property) => {
       const [raw_name, raw_value = ''] = property.split(':')
 

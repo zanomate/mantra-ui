@@ -11,8 +11,8 @@ export namespace MultiValue {
     if (!value) return []
     return value
       .split(/\s/)
-      .filter(v => !!v)
-      .map(v => v.trim())
+      .filter((v: any) => !!v)
+      .map((v: any) => v.trim())
   }
 
   export const stringify: Attribute.Stringify<Type> = value => {
