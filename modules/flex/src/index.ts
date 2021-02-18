@@ -5,3 +5,5 @@ export * from './attributes/FlexJustify/FlexJustify'
 export * from './attributes/FlexLineAlign/FlexLineAlign'
 export * from './attributes/FlexSize/FlexSize'
 export * from './attributes/FlexWrap/FlexWrap'
+
+export * from './components/flex/Flex'
