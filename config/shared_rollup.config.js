@@ -10,9 +10,40 @@ const dts = require('rollup-plugin-dts').default
 const filesize = require('rollup-plugin-filesize')
 const replace = require('@rollup/plugin-replace')
 
+const tsConfig = {
+  declarationDir: 'dist/types',
+  sourceMap: false,
+  rootDir: 'src',
+  outDir: 'dist',
+  target: 'es2017',
+  module: 'es2015',
+  lib: [
+    'es2017',
+    'dom',
+    'dom.iterable'
+  ],
+  declaration: true,
+  declarationMap: true,
+  strict: true,
+  noUnusedLocals: true,
+  noUnusedParameters: true,
+  noImplicitReturns: true,
+  noFallthroughCasesInSwitch: true,
+  moduleResolution: 'node',
+  allowSyntheticDefaultImports: true,
+  experimentalDecorators: true,
+  forceConsistentCasingInFileNames: true,
+  plugins: [
+    {
+      name: 'ts-lit-plugin',
+      strict: true
+    }
+  ]
+}
+
 const buildConfig = {
   input: 'src/index.ts',
-  output: { dir: 'dist', format: 'cjs' },
+  output: { dir: 'dist', format: 'esm' },
   plugins: [
     del({ targets: 'dist', hook: 'buildStart' }),
     peerDepsExternal(),
@@ -22,15 +53,7 @@ const buildConfig = {
       // esmExternals: false,
       // include: /node_modules/
     }),
-    typescript({
-      target: 'es5',
-      lib: ['es5', 'es6', 'es7', 'dom'],
-      declaration: true,
-      declarationDir: 'dist/types',
-      sourceMap: false,
-      rootDir: 'src',
-      outDir: 'dist'
-    }),
+    typescript(tsConfig),
     replace({ 'Reflect.decorate': 'undefined' }),
     // postcss({
     //   extract: false,

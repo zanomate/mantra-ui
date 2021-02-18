@@ -8,7 +8,7 @@ export namespace MultiValue {
   export type Type = string[]
 
   export const parse: Attribute.Parse<Type> = value => {
-    if (!value) return []
+    if (value === undefined || value === '') return undefined
     return value
       .split(/\s/)
       .filter((v: any) => !!v)

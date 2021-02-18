@@ -1,1 +1,1 @@
-# @mantra-ui / flex
+# @mantra-ui / core

@@ -1,3 +1,5 @@
 export * from './attributes/Attribute/Attribute'
+export * from './attributes/CssSize/CssSize'
+export * from './attributes/CssBoxSize/CssBoxSize'
 export * from './attributes/MultiValue/MultiValue'
 export * from './attributes/StyleObject/StyleObject'

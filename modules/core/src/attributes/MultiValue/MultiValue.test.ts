@@ -1,78 +1,66 @@
 import { MultiValue } from './MultiValue'
 
-const checkParse = (input: any, expected: MultiValue.Type) => {
-  const parsed = MultiValue.parse(input)
-  expect(parsed).toEqual(expected)
-}
-
-const checkStringify = (input: any, expected: string) => {
-  const string = MultiValue.stringify(input)
-  expect(string).toEqual(expected)
-}
-
 describe('MultiValue', () => {
   describe('parse()', () => {
     it('accept falsy values', () => {
-      checkParse(undefined, [])
-      checkParse(null, [])
-      checkParse('', [])
+      expect(MultiValue.parse(undefined)).toEqual(undefined)
+      expect(MultiValue.parse('')).toEqual(undefined)
     })
 
     it('accept single value', () => {
-      checkParse('plain', ['plain'])
-      checkParse('kebab-case', ['kebab-case'])
-      checkParse('camelCase', ['camelCase'])
-      checkParse('-Mixed-Case', ['-Mixed-Case'])
-      checkParse('_snake_case', ['_snake_case'])
-      checkParse('dot.case', ['dot.case'])
-      checkParse('123', ['123'])
+      expect(MultiValue.parse('plain')).toEqual(['plain'])
+      expect(MultiValue.parse('kebab-case')).toEqual(['kebab-case'])
+      expect(MultiValue.parse('camelCase')).toEqual(['camelCase'])
+      expect(MultiValue.parse('-Mixed-Case')).toEqual(['-Mixed-Case'])
+      expect(MultiValue.parse('_snake_case')).toEqual(['_snake_case'])
+      expect(MultiValue.parse('dot.case')).toEqual(['dot.case'])
+      expect(MultiValue.parse('123')).toEqual(['123'])
     })
 
     it('ignore spaces around value', () => {
-      checkParse(' value ', ['value'])
-      checkParse(' value   ', ['value'])
+      expect(MultiValue.parse(' value ')).toEqual(['value'])
+      expect(MultiValue.parse('  value   ')).toEqual(['value'])
     })
 
     it('accept multiple values', () => {
-      checkParse('value1 value2', ['value1', 'value2'])
-      checkParse('kebab-case -Mixed-Case _snake_case 123', ['kebab-case', '-Mixed-Case', '_snake_case', '123'])
+      expect(MultiValue.parse('value1 value2')).toEqual(['value1', 'value2'])
+      expect(MultiValue.parse('kebab-case -Mixed-Case _snake_case 123')).toEqual(['kebab-case', '-Mixed-Case', '_snake_case', '123'])
     })
 
     it('ignore additional spaces between values', () => {
-      checkParse('value1  value2', ['value1', 'value2'])
-      checkParse(' value1  value2   ', ['value1', 'value2'])
+      expect(MultiValue.parse('value1  value2')).toEqual(['value1', 'value2'])
+      expect(MultiValue.parse(' value1  value2   ')).toEqual(['value1', 'value2'])
     })
   })
 
   describe('stringify()', () => {
     it('accept falsy values', () => {
-      checkStringify(undefined, '')
-      checkStringify(null, '')
-      checkStringify('', '')
+      expect(MultiValue.stringify(undefined)).toEqual('')
+      expect(MultiValue.stringify([])).toEqual('')
     })
 
     it('accept single value', () => {
-      checkStringify(['plain'], 'plain')
-      checkStringify(['kebab-case'], 'kebab-case')
-      checkStringify(['camelCase'], 'camelCase')
-      checkStringify(['-Mixed-Case'], '-Mixed-Case')
-      checkStringify(['_snake_case'], '_snake_case')
-      checkStringify(['dot.case'], 'dot.case')
-      checkStringify(['123'], '123')
+      expect(MultiValue.stringify(['plain'])).toEqual('plain')
+      expect(MultiValue.stringify(['kebab-case'])).toEqual('kebab-case')
+      expect(MultiValue.stringify(['camelCase'])).toEqual('camelCase')
+      expect(MultiValue.stringify(['-Mixed-Case'])).toEqual('-Mixed-Case')
+      expect(MultiValue.stringify(['_snake_case'])).toEqual('_snake_case')
+      expect(MultiValue.stringify(['dot.case'])).toEqual('dot.case')
+      expect(MultiValue.stringify(['123'])).toEqual('123')
     })
 
     it('ignore spaces around value', () => {
-      checkStringify([' value '], 'value')
-      checkStringify([' value   '], 'value')
+      expect(MultiValue.stringify([' value '])).toEqual('value')
+      expect(MultiValue.stringify(['  value   '])).toEqual('value')
     })
 
     it('accept multiple values', () => {
-      checkStringify(['value1', 'value2'], 'value1 value2')
-      checkStringify(['kebab-case', '-Mixed-Case', '_snake_case', '123'], 'kebab-case -Mixed-Case _snake_case 123')
+      expect(MultiValue.stringify(['value1', 'value2'])).toEqual('value1 value2')
+      expect(MultiValue.stringify(['kebab-case', '-Mixed-Case', '_snake_case', '123'])).toEqual('kebab-case -Mixed-Case _snake_case 123')
     })
 
     it('ignore additional spaces between values', () => {
-      checkStringify([' value1 ', '  value2   '], 'value1 value2')
+      expect(MultiValue.stringify([' value1 ', '  value2   '])).toEqual('value1 value2')
     })
   })
 })
