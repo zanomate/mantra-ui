@@ -1,0 +1,34 @@
+{
+  "_name": "react",
+  "name": "@mantra-ui/react",
+  "version": "2021.0.0",
+  "author": "Matteo Zanoncello",
+  "license": "MIT",
+  "repository": "https://github.com/zanomate/mantra-ui",
+  "homepage": "https://github.com/zanomate/mantra-ui",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
+    "test": "jest",
+    "test:watch": "jest --watch --verbose"
+  },
+  "dependencies": {
+    "@mantra-ui/flex": "2021.0.0",
+    "react": "^17.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.2",
+    "@types/mocha": "^8.2.0",
+    "typescript": "^4.1.3"
+  },
+  "peerDependencies": {
+    "@mantra-ui/flex": "2021.0.0",
+    "react": "^17.0.1"
+  }
+}

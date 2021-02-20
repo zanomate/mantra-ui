@@ -5,6 +5,9 @@
 
 #build
 dist
+modules/react/*.js
+modules/react/*.d.ts
+!modules/react/rollup.config.js
 
 # local
 node_modules
