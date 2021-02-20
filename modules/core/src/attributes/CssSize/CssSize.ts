@@ -1,4 +1,4 @@
-import { Attribute } from '../Attribute/Attribute'
+import { Attribute } from '../Attribute'
 
 export namespace CssSize {
   export type Type = number | string

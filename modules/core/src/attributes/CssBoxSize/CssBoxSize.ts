@@ -1,4 +1,4 @@
-import { Attribute } from '../Attribute/Attribute'
+import { Attribute } from '../Attribute'
 import { CssSize } from '../CssSize/CssSize'
 import { MultiValue } from '../MultiValue/MultiValue'
 

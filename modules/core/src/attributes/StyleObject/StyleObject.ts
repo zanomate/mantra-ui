@@ -1,4 +1,4 @@
-import { Attribute } from '../Attribute/Attribute'
+import { Attribute } from '../Attribute'
 
 /**
  * CSS style object of values separated by semicolons.

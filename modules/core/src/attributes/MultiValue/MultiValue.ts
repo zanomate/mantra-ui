@@ -1,4 +1,4 @@
-import { Attribute } from '../Attribute/Attribute'
+import { Attribute } from '../Attribute'
 
 /**
  * List of values separated by a space.
