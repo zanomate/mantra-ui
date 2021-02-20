@@ -3,14 +3,13 @@ const del = require('rollup-plugin-delete')
 const peerDepsExternal = require('rollup-plugin-peer-deps-external')
 const { nodeResolve } = require('@rollup/plugin-node-resolve')
 const commonjs = require('@rollup/plugin-commonjs')
+const merge = require('lodash/merge')
 const typescript = require('@rollup/plugin-typescript')
-// const postcss = require('rollup-plugin-postcss')
 const { terser } = require('rollup-plugin-terser')
-const dts = require('rollup-plugin-dts').default
 const filesize = require('rollup-plugin-filesize')
 const replace = require('@rollup/plugin-replace')
 
-const tsConfig = {
+const tsCompilerOptions = {
   declarationDir: 'dist/types',
   sourceMap: false,
   rootDir: 'src',
@@ -41,7 +40,7 @@ const tsConfig = {
   ]
 }
 
-const buildConfig = {
+const tsBundleConfig = (custom) => merge(custom, {
   input: 'src/index.ts',
   output: { dir: 'dist', format: 'esm' },
   plugins: [
@@ -53,7 +52,7 @@ const buildConfig = {
       // esmExternals: false,
       // include: /node_modules/
     }),
-    typescript(tsConfig),
+    typescript(tsCompilerOptions),
     replace({ 'Reflect.decorate': 'undefined' }),
     // postcss({
     //   extract: false,
@@ -73,18 +72,6 @@ const buildConfig = {
       showBrotliSize: true
     })
   ]
-}
+})
 
-const dtsBundlerConfig = {
-  input: 'dist/types/index.d.ts',
-  output: [{ file: 'dist/index.d.ts' }],
-  plugins: [
-    dts(),
-    del({ targets: 'dist/types', hook: 'buildEnd' })
-  ]
-}
-
-module.exports = [
-  buildConfig,
-  dtsBundlerConfig
-]
+export default tsBundleConfig

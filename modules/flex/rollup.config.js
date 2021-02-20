@@ -1,3 +1,7 @@
-import * as configuration from '../../config/shared_rollup.config'
+import dtsConfig from '../../config/rollup_dts'
+import tsBundleConfig from '../../config/rollup_tsBundle'
 
-export default configuration
+export default [
+  tsBundleConfig(),
+  dtsConfig()
+]

@@ -9,14 +9,19 @@
     "modules/*"
   ],
   "scripts": {
+    "build:core": "yarn --cwd \"modules/core\" build",
     "build:flex": "yarn --cwd \"modules/flex\" build",
+    "build:react": "yarn --cwd \"modules/react\" build",
     "serve": "es-dev-server --node-resolve --watch",
+    "test:jest": "jest",
     "test": "karma start karma.conf.js",
     "test:watch": "karma start karma.conf.js --auto-watch=true --single-run=false"
   },
   "dependencies": {
     "@mantra-ui/core": "2021.0.0",
     "@mantra-ui/eslint-config": "2021.0.0",
+    "@mantra-ui/flex": "2021.0.0",
+    "@mantra-ui/react": "2021.0.0",
     "@open-wc/testing": "^2.5.32",
     "@open-wc/testing-karma": "^4.0.9",
     "@rollup/plugin-commonjs": "^17.1.0",
