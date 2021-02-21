@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.168",
-    "lit-element": "^2.4.0"
+    "lit-element": "^2.4.0",
+    "lit-html": "^1.3.0"
   },
   "devDependencies": {
     "@types/mocha": "^8.2.0",

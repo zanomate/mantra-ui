@@ -1,20 +1,18 @@
-import { Attribute } from '../Attribute'
-
 /**
  * CSS style object of values separated by semicolons.
  * @example "background-color: red; color: green;"
  */
-export namespace StyleObject {
-  export interface Type {
-    [property: string]: any
-  }
+export interface Map {
+  [property: string]: any
+}
 
-  export const parse: Attribute.Parse<Type> = value => {
-    if (!value) return {}
+export const MapConverter = {
+  fromAttribute(value: string | null): Map | undefined {
+    if (!value) return undefined
     const properties: string[] = value
       .split(';')
       .filter((p: any) => !!p)
-    return properties.reduce<Type>((res, property) => {
+    return properties.reduce<Map>((res, property) => {
       const [raw_name, raw_value = ''] = property.split(':')
 
       const propertyName = raw_name.trim()
@@ -25,11 +23,10 @@ export namespace StyleObject {
       }
       return res
     }, {})
-  }
-
-  export const stringify: Attribute.Stringify<Type> = value => {
-    if (!value) return ''
-    return Object
+  },
+  toAttribute(value: Map | undefined): unknown {
+    if (!value) return undefined
+    const keys = Object
       .keys(value)
       .filter(name => (
         !!name
@@ -37,12 +34,14 @@ export namespace StyleObject {
         && value[name] !== null
         && value[name] !== ''
       ))
-      .map(name => {
-        let propertyName = name.trim()
-        const propertyValue = value[name]
+    if (!keys.length) return undefined
+    return keys
+      .map(key => {
+        let propertyName = key.trim()
+        const propertyValue = value[key]
         propertyName += `:${String(propertyValue).trim()}`
         return propertyName
       })
-      .join(';')
+      .join('; ')
   }
 }
