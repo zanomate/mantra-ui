@@ -15,8 +15,8 @@
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
-    "test": "jest",
-    "test:watch": "jest --watch --verbose"
+    "test:jest": "jest",
+    "test:jest:watch": "jest --watch --verbose"
   },
   "dependencies": {
     "@types/lodash": "^4.14.168",
